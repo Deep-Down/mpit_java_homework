@@ -1,10 +1,8 @@
 package edu.phystech.hw3;
 
 
-import edu.phystech.hw3.result.Failure;
 import edu.phystech.hw3.result.Result;
 import edu.phystech.hw3.result.ResultUtil;
-import edu.phystech.hw3.result.Success;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

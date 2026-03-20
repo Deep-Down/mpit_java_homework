@@ -6,6 +6,7 @@ import java.lang.reflect.Proxy;
  * @author kzlv4natoly
  */
 public class CacheUtils {
+    @SuppressWarnings("unchecked")
     public static <T> T getCacheProxy(Class<T> clazz, T object) {
         // Здесь привиден пример того, как можно создавать динамический прокси
         return (T) Proxy.newProxyInstance(

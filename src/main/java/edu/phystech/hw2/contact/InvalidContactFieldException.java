@@ -1,6 +1,7 @@
 package edu.phystech.hw2.contact;
 
 public class InvalidContactFieldException extends RuntimeException {
+    @SuppressWarnings("unused")
     private String fieldName;
 
     public String getFieldName() {

@@ -6,6 +6,7 @@ import java.util.function.Function;
  * @author kzlv4natoly
  */
 public final class Success<T> implements Result<T> {
+    @SuppressWarnings("unused")
     private final T value;
     public Success(T value) {
         this.value = value;
@@ -18,12 +19,12 @@ public final class Success<T> implements Result<T> {
 
     @Override
     public boolean isSuccess() {
-        return false;
+        return true;
     }
 
     @Override
     public T getOrDefault(T defaultValue) {
-        return null;
+        return value;
     }
 
     @Override
@@ -33,7 +34,7 @@ public final class Success<T> implements Result<T> {
 
     @Override
     public <R> Result<R> map(Function<T, R> transform) {
-        return null;
+        return new Success<>(transform.apply(value));
     }
 
 }
