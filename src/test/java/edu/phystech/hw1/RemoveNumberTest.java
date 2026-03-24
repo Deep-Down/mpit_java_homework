@@ -1,14 +1,27 @@
 package edu.phystech.hw1;
 
 import java.util.Arrays;
-
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class RemoveNumberTest {
 
     private static int[] removeElement(int[] input, int element) {
-        return input;
+        int count = 0;
+        for (int num : input) {
+            if (num == element) {
+                ++count;
+            }
+        }
+
+        int[] removed = new int[input.length - count];
+        int index = 0;
+        for (int num : input) {
+            if (num != element) {
+                removed[index++] = num;
+            }
+        }
+        return removed;
     }
 
     @Test

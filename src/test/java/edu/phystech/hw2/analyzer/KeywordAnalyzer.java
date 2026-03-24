@@ -28,12 +28,10 @@ public abstract class KeywordAnalyzer implements TextAnalyzer {
     }
 
     protected String[] getKeywords() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getKeywords'");
     }
 
     protected Label getLabel() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getLabel'");
     }
 }
