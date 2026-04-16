@@ -19,7 +19,9 @@ public class FunctionalTest {
 
     @Test
     public void mapHasRightSignatureTest() {
+        @SuppressWarnings("unused")
         List<Disk> diskList = List.of(new Disk(1), new Disk(2));
+        @SuppressWarnings("unused")
         Function<Shape, Double> getArea = Shape::getArea;
 
 //        нужно подправить сигнутру метода map, чтобы этот код компилировался и отрабатывал

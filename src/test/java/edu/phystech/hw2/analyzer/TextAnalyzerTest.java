@@ -17,7 +17,7 @@ public class TextAnalyzerTest {
 
     @Test
     public void spamTextTest() {
-        SpamAnalyzer spamAnalyzer = new SpamAnalyzer(List.of("kek", "lol"));
+        SpamAnalyzer spamAnalyzer = new SpamAnalyzer(new String[]{"kek", "lol"});
         Assertions.assertEquals(Label.SPAM, spamAnalyzer.processText("kek 123"));
         Assertions.assertEquals(Label.OK, spamAnalyzer.processText("123"));
         Assertions.assertEquals(Label.SPAM, spamAnalyzer.processText("123 lol"));
@@ -25,7 +25,7 @@ public class TextAnalyzerTest {
 
     @Test
     public void negativeTextTest() {
-        NegativeTextAnalyzer negativeTextAnalyzer = new NegativeTextAnalyzer();
+        NegativeTextAnalyzer negativeTextAnalyzer = new NegativeTextAnalyzer(List.of(":(", "=(", ":|"));
         Assertions.assertEquals(Label.NEGATIVE, negativeTextAnalyzer.processText("hello :("));
         Assertions.assertEquals(Label.NEGATIVE, negativeTextAnalyzer.processText(":) =("));
         Assertions.assertEquals(Label.NEGATIVE, negativeTextAnalyzer.processText("))) :|"));

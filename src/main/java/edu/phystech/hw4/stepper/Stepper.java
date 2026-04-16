@@ -14,7 +14,9 @@ public class Stepper {
     }
 
     private final List<Side> history = new ArrayList<>();
+    @SuppressWarnings("unused")
     private final Object lock = new Object();
+    @SuppressWarnings("unused")
     private boolean isLeftTurn = true;
 
     public void leftStep() {}

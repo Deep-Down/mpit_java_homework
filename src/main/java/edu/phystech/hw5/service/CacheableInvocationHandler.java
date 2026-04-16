@@ -1,10 +1,7 @@
 package edu.phystech.hw5.service;
 
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * @author kzlv4natoly

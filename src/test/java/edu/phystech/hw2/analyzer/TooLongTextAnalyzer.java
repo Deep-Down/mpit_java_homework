@@ -1,7 +1,6 @@
 package edu.phystech.hw2.analyzer;
 
 public class TooLongTextAnalyzer implements TextAnalyzer {
-
     @SuppressWarnings("unused")
     private final int maxLen;
 

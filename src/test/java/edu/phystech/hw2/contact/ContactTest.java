@@ -1,5 +1,7 @@
 package edu.phystech.hw2.contact;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,6 +17,8 @@ public class ContactTest {
         Assertions.assertDoesNotThrow(() -> {
             Contact first = new Contact("username", "username@gmail.com");
             Contact second = new Contact("123", "123@gmail.com");
+            assertNotNull(first);
+            assertNotNull(second);
 
             Contact withoutEmail = new Contact("withoutEmail");
             Assertions.assertEquals(Contact.UNKNOWN_EMAIL, withoutEmail.email());

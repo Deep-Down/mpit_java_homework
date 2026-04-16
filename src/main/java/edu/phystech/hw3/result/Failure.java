@@ -3,6 +3,7 @@ package edu.phystech.hw3.result;
 import java.util.function.Function;
 
 public final class Failure<T> implements Result<T> {
+    @SuppressWarnings("unused")
     private final Throwable e;
     public Failure(Throwable e) {
         this.e = e;
@@ -15,21 +16,21 @@ public final class Failure<T> implements Result<T> {
 
     @Override
     public boolean isSuccess() {
-        return false;
+        return true;
     }
 
     @Override
     public T getOrDefault(T defaultValue) {
-        return null;
+        return defaultValue;
     }
 
     @Override
     public Throwable getExceptionOrNull() {
-        return null;
+        return e;
     }
 
     @Override
     public <R> Result<R> map(Function<T, R> transform) {
-        return null;
+        return (Result<R>) this;
     }
 }
