@@ -9,17 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class InverseMapKeyValuesTest {
-
-    public static <K, V> Map<V, Collection<K>> inverse(Map<? extends K, ? extends V> map) {
-        Map<V, Collection<K>> result = new java.util.HashMap<>();
-
-        for (Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            V value = entry.getValue();
-            K key = entry.getKey();
-
-            result.computeIfAbsent(value, k -> new java.util.ArrayList<>()).add(key);
-        }
-        return result;
     }
 
     @Test
