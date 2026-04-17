@@ -9,32 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class SetUtilsTest {
 
-    public static <T> Set<T> union(Set<T> first, Set<T> second) {
-        Set<T> result = new HashSet<>(first);
-        result.addAll(second);
-        return result;
-    }
-
-    public static <T> Set<T> intersection(Set<T> first, Set<T> second) {
-        Set<T> result = new HashSet<>(first);
-        result.retainAll(second);
-        return result;
-    }
-
-    public static <T> Set<T> difference(Set<T> first, Set<T> second) {
-        Set<T> result = new HashSet<>(first);
-        result.removeAll(second);
-        return result;
-    }
-
-    public static <T> Set<T> symmetricDifference(Set<T> first, Set<T> second) {
-        Set<T> union = union(first, second);
-        Set<T> intersection = intersection(first, second);
-        
-        union.removeAll(intersection);
-        return union;
-    }
-
     @Test
     void unionTest() {
         var firstSet = Set.of(1, 2, 3);
