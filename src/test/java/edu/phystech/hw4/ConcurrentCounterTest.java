@@ -13,11 +13,15 @@ import org.junit.jupiter.api.Test;
  * @author kzlv4natoly
  */
 class ConcurrentCounter {
-    @SuppressWarnings("unused")
     private long value = 0;
-    void increment() {}
 
-    long getValue() { return 0; }
+    synchronized void increment() {
+        value++;
+    }
+
+    synchronized long getValue() {
+        return value;
+    }
 }
 
 
