@@ -15,20 +15,17 @@ public interface Validator {
 
             Class<?> clazz = object.getClass();
             for (Field field : clazz.getDeclaredFields()) {
-                // Работаем только со строками, как указано в условии
                 if (field.getType().equals(String.class)) {
                     try {
-                        field.setAccessible(true); // Даем доступ к private полям
+                        field.setAccessible(true); 
                         String value = (String) field.get(object);
 
-                        // Проверка @NotBlank
                         if (field.isAnnotationPresent(NotBlank.class)) {
                             if (value == null || value.isEmpty()) {
                                 throw new ValidationException(field.getAnnotation(NotBlank.class).message());
                             }
                         }
 
-                        // Проверка @Size
                         if (field.isAnnotationPresent(Size.class)) {
                             Size size = field.getAnnotation(Size.class);
                             int length = (value == null) ? 0 : value.length();
