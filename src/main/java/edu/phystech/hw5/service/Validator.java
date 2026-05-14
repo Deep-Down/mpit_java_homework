@@ -1,8 +1,47 @@
 package edu.phystech.hw5.service;
 
-/**
- * @author kzlv4natoly
- */
+import edu.phystech.hw5.annotation.validation.NotBlank;
+import edu.phystech.hw5.annotation.validation.Size;
+import edu.phystech.hw5.exception.ValidationException;
+
+import java.lang.reflect.Field;
+
 public interface Validator {
     void validate(Object object);
+
+    static Validator getDefault() {
+        return object -> {
+            if (object == null) return;
+
+            Class<?> clazz = object.getClass();
+            for (Field field : clazz.getDeclaredFields()) {
+                // Работаем только со строками, как указано в условии
+                if (field.getType().equals(String.class)) {
+                    try {
+                        field.setAccessible(true); // Даем доступ к private полям
+                        String value = (String) field.get(object);
+
+                        // Проверка @NotBlank
+                        if (field.isAnnotationPresent(NotBlank.class)) {
+                            if (value == null || value.isEmpty()) {
+                                throw new ValidationException(field.getAnnotation(NotBlank.class).message());
+                            }
+                        }
+
+                        // Проверка @Size
+                        if (field.isAnnotationPresent(Size.class)) {
+                            Size size = field.getAnnotation(Size.class);
+                            int length = (value == null) ? 0 : value.length();
+                            
+                            if (length < size.min() || length > size.max()) {
+                                throw new ValidationException(size.message());
+                            }
+                        }
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException("Failed to access field: " + field.getName(), e);
+                    }
+                }
+            }
+        };
+    }
 }
