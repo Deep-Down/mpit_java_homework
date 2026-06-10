@@ -1,6 +1,8 @@
 package edu.phystech.hw3;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import edu.phystech.hw3.shape.Disk;
@@ -23,10 +25,8 @@ public class FunctionalTest {
         List<Disk> diskList = List.of(new Disk(1), new Disk(2));
         @SuppressWarnings("unused")
         Function<Shape, Double> getArea = Shape::getArea;
-
-//        нужно подправить сигнутру метода map, чтобы этот код компилировался и отрабатывал
-//        List<Double> expected = List.of(new Disk(1).getArea(), new Disk(2).getArea());
-//        Assertions.assertEquals(expected, Functional.map(diskList, getArea));
+        List<Double> expected = List.of(new Disk(1).getArea(), new Disk(2).getArea());
+        Assertions.assertEquals(expected, Functional.map(diskList, getArea));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package edu.phystech.hw3;
-
+import edu.phystech.hw3.result.Success;
+import edu.phystech.hw3.result.Failure;
 
 import edu.phystech.hw3.result.Result;
 import edu.phystech.hw3.result.ResultUtil;
@@ -45,29 +46,26 @@ public class ResultTest {
         Assertions.assertEquals(e, mapResult.getExceptionOrNull());
     }
 
-    // Для того, чтобы этот тест отработал, нужно поменять определение классов Success & Failure
-    // (данная функциональность появилась с java19)
-//
-//    @Test
-//    public void resultPatternDeconstructionWorks() {
-//        int x = 11;
-//        Result<Integer> result = ResultUtil.execute(() -> x * x);
-//
-//        Integer a = switch (result) {
-//            case Success(var value) -> value;
-//            case Failure(Throwable e) -> Assertions.fail();
-//        };
-//
-//        Result<Integer> failureResult = ResultUtil.execute(() -> {
-//            throw new RuntimeException(":(");
-//        });
-//
-//        Integer b = switch (failureResult) {
-//            case Success(var value) -> Assertions.fail();
-//            case Failure(Throwable e) -> {
-//                Assertions.assertEquals(":(", e.getMessage());
-//                yield 1;
-//            }
-//        };
-//    }
+    @Test
+    public void resultPatternDeconstructionWorks() {
+        int x = 11;
+        Result<Integer> result = ResultUtil.execute(() -> x * x);
+
+        Integer a = switch (result) {
+            case Success(var value) -> value;
+            case Failure(Throwable e) -> Assertions.fail();
+        };
+
+        Result<Integer> failureResult = ResultUtil.execute(() -> {
+            throw new RuntimeException(":(");
+        });
+
+        Integer b = switch (failureResult) {
+            case Success(var value) -> Assertions.fail();
+            case Failure(Throwable e) -> {
+                Assertions.assertEquals(":(", e.getMessage());
+                yield 1;
+            }
+        };
+    }
 }
