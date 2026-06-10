@@ -14,16 +14,34 @@ public class Stepper {
     }
 
     private final List<Side> history = new ArrayList<>();
-    @SuppressWarnings("unused")
     private final Object lock = new Object();
-    @SuppressWarnings("unused")
     private boolean isLeftTurn = true;
 
-    public void leftStep() {}
+    public void leftStep() throws InterruptedException {
+        synchronized (lock) {
+            while (!isLeftTurn) {
+                lock.wait();
+            }
+            history.add(Side.LEFT);
+            isLeftTurn = false;
+            lock.notifyAll();
+        }
+    }
 
-    public void rightStep()  {}
+    public void rightStep() throws InterruptedException {
+        synchronized (lock) {
+            while (isLeftTurn) {
+                lock.wait();
+            }
+            history.add(Side.RIGHT);
+            isLeftTurn = true;
+            lock.notifyAll();
+        }
+    }
 
     public List<Side> getHistory() {
-        return history;
+        synchronized (lock) {
+            return new ArrayList<>(history);
+        }
     }
 }
